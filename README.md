@@ -1,6 +1,6 @@
 # WikiCat Multilingual Tokenizer Analysis
 
-A comprehensive analysis of 12 modern LLM tokenizers across 204 languages using the [WikiCat Multilingual dataset](https://huggingface.co/datasets/Norod78/WikiCat-Multilingual).
+A comprehensive analysis of 12 modern LLM tokenizers across 272 languages using the [WikiCat Multilingual dataset](https://huggingface.co/datasets/Norod78/WikiCat-Multilingual).
 
 ## 📊 Quick Results
 
@@ -13,10 +13,12 @@ A comprehensive analysis of 12 modern LLM tokenizers across 204 languages using 
 
 ## 🎯 What This Analysis Does
 
-This project evaluates tokenizer efficiency across 272 languages by measuring:
+This project evaluates tokenizer efficiency across 272 languages from the WikiCat dataset by measuring:
 - **WPT (Words Per Token)**: Higher = more efficient (fewer tokens needed)
 - **CPT (Characters Per Token)**: Higher = better compression
 - **Language family performance**: Which tokenizers excel at specific linguistic groups
+
+**Note:** The main analysis focuses on 204 languages with ≥100 words of text to ensure statistical reliability. The full dataset contains 272 languages, but smaller samples were excluded from comparative metrics.
 
 ## 🚀 Quick Start
 
@@ -47,7 +49,7 @@ uv sync
 ### Running the Analysis
 
 ```bash
-# Run tokenizer evaluation (takes ~30-60 minutes)
+# Run tokenizer evaluation (takes a few minutes)
 uv run python multilingual-tokenizer-wikicat-eval.py
 
 # Analyze results
@@ -56,7 +58,8 @@ uv run python analyze-tokenizer-stats.py --min-words 100
 
 The evaluation script:
 - Downloads the WikiCat dataset automatically
-- Processes 272 languages
+- Processes all 272 languages
+- Analyzes 204 languages with ≥100 words for statistical reliability
 - Supports resumability (can stop and restart)
 - Outputs to `wikicat-tokenizer-eval.jsonl`
 
