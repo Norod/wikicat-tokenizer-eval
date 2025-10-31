@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# uv
+.python-version
+
+# Data files (large, generated)
+*.jsonl
+wikipedia_cat-*.jsonl
+wikicat-tokenizer-eval.jsonl
+
+# HuggingFace cache
+.cache/
+huggingface/
+
+# Model downloads
+models/
+checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

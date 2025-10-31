@@ -1,0 +1,11 @@
+[project]
+name = "wikicat-tokenizer-eval"
+version = "0.1.0"
+description = "Multilingual tokenizer evaluation on WikiCat dataset"
+requires-python = ">=3.10"
+dependencies = [
+    "huggingface-hub",
+    "transformers",
+    "torch",
+    "tiktoken",
+]

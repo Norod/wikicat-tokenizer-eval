@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokenizer Analysis Slideshow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .slide {
+            display: none;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div class="min-h-screen flex flex-col">
+        <!-- Slides Container -->
+        <div class="flex-1 flex items-center justify-center p-8">
+            
+            <!-- Slide 1: Title -->
+            <div id="slide-1" class="slide active flex-col items-center justify-center text-center max-w-4xl">
+                <h1 class="text-6xl font-bold text-cyan-400 mb-6">Multilingual Tokenization Showdown</h1>
+                <p class="text-3xl text-gray-300 mb-4">Analyzing 12 LLM Tokenizers</p>
+                <p class="text-2xl text-gray-400">Across 204 Languages</p>
+                <p class="text-lg text-gray-500 mt-8">
+                    <a href="https://huggingface.co/datasets/Norod78/WikiCat-Multilingual" 
+                       target="_blank" 
+                       class="text-cyan-400 hover:text-cyan-300 underline">
+                        WikiCat Multilingual
+                    </a> Analysis
+                </p>
+            </div>
+
+            <!-- Slide 2: Winners -->
+            <div id="slide-2" class="slide flex-col max-w-6xl w-full">
+                <h2 class="text-4xl font-bold text-cyan-400 mb-8 text-center">Tokenizer Winners</h2>
+                <div class="chart-container">
+                    <canvas id="winsChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-3 gap-4 text-sm">
+                    <div class="bg-gray-800 p-4 rounded">
+                        <div class="text-cyan-400 font-bold">🥇 GPT-OSS</div>
+                        <div class="text-gray-300">95 languages (46.6%)</div>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded">
+                        <div class="text-cyan-400 font-bold">🥈 MiniMax-M2</div>
+                        <div class="text-gray-300">41 languages (20.1%)</div>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded">
+                        <div class="text-cyan-400 font-bold">🥉 Llama-4</div>
+                        <div class="text-gray-300">39 languages (19.1%)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Average Performance -->
+            <div id="slide-3" class="slide flex-col max-w-6xl w-full">
+                <h2 class="text-4xl font-bold text-cyan-400 mb-8 text-center">Average Performance (WPT)</h2>
+                <p class="text-center text-gray-400 mb-4">Words Per Token: Bigger is Better</p>
+                <div class="chart-container">
+                    <canvas id="wptChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Slide 4: Worst Performers -->
+            <div id="slide-4" class="slide flex-col max-w-6xl w-full">
+                <h2 class="text-4xl font-bold text-red-400 mb-8 text-center">Worst Performers</h2>
+                <div class="bg-gray-800 p-8 rounded-lg">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-red-300 mb-2">GPT-2: The Legacy Problem</h3>
+                        <p class="text-gray-300 text-lg">Worst in 190 out of 204 languages</p>
+                        <p class="text-gray-400">Trained on English only - struggles with multilingual text</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="bg-gray-700 p-4 rounded">
+                            <div class="text-sm text-gray-400">Russian</div>
+                            <div class="text-2xl text-red-300 font-bold">WPT: 0.134</div>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded">
+                            <div class="text-sm text-gray-400">German</div>
+                            <div class="text-2xl text-red-300 font-bold">WPT: 0.309</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 mt-6 text-sm">Second worst: Granite-4 (Avg WPT: 0.282)</p>
+                </div>
+            </div>
+
+            <!-- Slide 5: Language Families -->
+            <div id="slide-5" class="slide flex-col max-w-6xl w-full">
+                <h2 class="text-4xl font-bold text-cyan-400 mb-8 text-center">Performance by Language Family</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-cyan-300 mb-3">Slavic (10 langs)</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Llama-4</span>
+                                <span class="text-cyan-400 font-bold">70%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded h-2">
+                                <div class="bg-cyan-400 h-2 rounded" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-cyan-300 mb-3">Germanic (8 langs)</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>GPT-OSS</span>
+                                <span class="text-cyan-400 font-bold">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded h-2">
+                                <div class="bg-cyan-400 h-2 rounded" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-cyan-300 mb-3">Romance (8 langs)</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>MiniMax-M2</span>
+                                <span class="text-cyan-400 font-bold">62.5%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded h-2">
+                                <div class="bg-cyan-400 h-2 rounded" style="width: 62.5%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-cyan-300 mb-3">Indo-Aryan (12 langs)</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Gemma-3</span>
+                                <span class="text-cyan-400 font-bold">50%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded h-2">
+                                <div class="bg-cyan-400 h-2 rounded" style="width: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Perfect Scores -->
+            <div id="slide-6" class="slide flex-col max-w-6xl w-full">
+                <h2 class="text-4xl font-bold text-green-400 mb-8 text-center">100% Dominance</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gray-800 p-6 rounded-lg border-2 border-green-400">
+                        <h3 class="text-2xl font-bold text-green-300 mb-2">MiniMax-M2</h3>
+                        <div class="text-gray-300">✓ Semitic (Arabic): 100%</div>
+                        <div class="text-gray-300">✓ Japanese: 100%</div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg border-2 border-green-400">
+                        <h3 class="text-2xl font-bold text-green-300 mb-2">GPT-OSS</h3>
+                        <div class="text-gray-300">✓ Niger-Congo: 100%</div>
+                        <div class="text-gray-300">✓ Semitic (Hebrew): 100%</div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg border-2 border-green-400">
+                        <h3 class="text-2xl font-bold text-green-300 mb-2">Llama-4</h3>
+                        <div class="text-gray-300">✓ Korean: 100%</div>
+                        <div class="text-gray-300">✓ Austroasiatic: 100%</div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg border-2 border-green-400">
+                        <h3 class="text-2xl font-bold text-green-300 mb-2">Gemma-3</h3>
+                        <div class="text-gray-300">✓ Sino-Tibetan (Burmese): 100%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Conclusion -->
+            <div id="slide-7" class="slide flex-col items-center justify-center text-center max-w-4xl">
+                <h2 class="text-5xl font-bold text-cyan-400 mb-8">Key Takeaways</h2>
+                <div class="space-y-6 text-left text-xl">
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <span class="text-cyan-400 font-bold">🏆 Overall Winner:</span>
+                        <span class="text-gray-300"> GPT-OSS (46.6% wins, highest avg WPT: 0.345)</span>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <span class="text-cyan-400 font-bold">🌍 Specialization Matters:</span>
+                        <span class="text-gray-300"> Different tokenizers excel at different language families</span>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <span class="text-red-400 font-bold">⚠️ Legacy Issues:</span>
+                        <span class="text-gray-300"> GPT-2 struggles dramatically outside English (93% worst)</span>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <span class="text-cyan-400 font-bold">💡 Recommendation:</span>
+                        <span class="text-gray-300"> Choose GPT-OSS for multilingual applications</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="bg-gray-800 p-6 flex items-center justify-between">
+            <button id="prevBtn" class="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed">
+                ← Previous
+            </button>
+            <div class="text-gray-400 text-lg">
+                <span id="currentSlide">1</span> / <span id="totalSlides">7</span>
+            </div>
+            <button id="nextBtn" class="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed">
+                Next →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 7;
+        
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentSlideSpan = document.getElementById('currentSlide');
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            const targetSlide = document.getElementById(`slide-${n}`);
+            if (targetSlide) {
+                targetSlide.classList.add('active');
+            }
+            
+            currentSlideSpan.textContent = n;
+            prevBtn.disabled = (n === 1);
+            nextBtn.disabled = (n === totalSlides);
+            
+            // Render charts when needed
+            if (n === 2) renderWinsChart();
+            if (n === 3) renderWptChart();
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 1) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentSlide > 1) {
+                currentSlide--;
+                showSlide(currentSlide);
+            } else if (e.key === 'ArrowRight' && currentSlide < totalSlides) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Chart rendering functions
+        let winsChart = null;
+        let wptChart = null;
+
+        function renderWinsChart() {
+            if (winsChart) winsChart.destroy();
+            
+            const ctx = document.getElementById('winsChart').getContext('2d');
+            winsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['GPT-OSS', 'MiniMax-M2', 'Llama-4', 'Gemma-3', 'Aya-Expanse', 'Qwen-3-VL', 'DeepSeek-3.2', 'Kimi-K2'],
+                    datasets: [{
+                        label: 'Languages Won',
+                        data: [95, 41, 39, 20, 4, 2, 2, 1],
+                        backgroundColor: '#22d3ee',
+                        borderColor: '#06b6d4',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: '#d1d5db' },
+                            grid: { color: '#374151' }
+                        },
+                        x: {
+                            ticks: { color: '#d1d5db' },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#d1d5db' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderWptChart() {
+            if (wptChart) wptChart.destroy();
+            
+            const ctx = document.getElementById('wptChart').getContext('2d');
+            wptChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['GPT-OSS', 'Llama-4', 'Gemma-3', 'MiniMax-M2', 'DeepSeek-3.2', 'Nemotron-v2', 'Kimi-K2', 'SmolLM3', 'Aya-Expanse', 'Qwen-3-VL', 'Granite-4', 'GPT-2'],
+                    datasets: [{
+                        label: 'Average WPT',
+                        data: [0.345, 0.338, 0.326, 0.312, 0.312, 0.309, 0.305, 0.300, 0.300, 0.289, 0.282, 0.237],
+                        backgroundColor: (ctx) => {
+                            const value = ctx.parsed.y;
+                            return value > 0.33 ? '#22d3ee' : value > 0.28 ? '#fbbf24' : '#ef4444';
+                        },
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { color: '#d1d5db' },
+                            grid: { color: '#374151' }
+                        },
+                        y: {
+                            ticks: { color: '#d1d5db' },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#d1d5db' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize
+        showSlide(1);
+    </script>
+
+</body>
+</html>
