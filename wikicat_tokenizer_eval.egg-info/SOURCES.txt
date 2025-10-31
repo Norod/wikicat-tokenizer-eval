@@ -1,6 +1,0 @@
-pyproject.toml
-wikicat_tokenizer_eval.egg-info/PKG-INFO
-wikicat_tokenizer_eval.egg-info/SOURCES.txt
-wikicat_tokenizer_eval.egg-info/dependency_links.txt
-wikicat_tokenizer_eval.egg-info/requires.txt
-wikicat_tokenizer_eval.egg-info/top_level.txt
