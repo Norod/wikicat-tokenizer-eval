@@ -9,7 +9,7 @@ A comprehensive analysis of 12 modern LLM tokenizers across 204 languages using 
 - Highest average WPT: 0.345
 - Best for multilingual applications
 
-**📈 Interactive Results:** [View Slideshow](https://norod78.github.io/wikicat-tokenizer-eval/tokenizer-slideshow.html)
+**📈 Interactive Results:** [View Slideshow](https://norod.github.io/wikicat-tokenizer-eval/tokenizer-slideshow.html)
 
 ## 🎯 What This Analysis Does
 
@@ -117,7 +117,7 @@ The evaluation script:
 ### Interactive Slideshow
 Open `tokenizer-slideshow.html` in any modern browser for an interactive presentation of results.
 
-**Or view it online:** https://norod78.github.io/wikicat-tokenizer-eval/tokenizer-slideshow.html
+**Or view it online:** https://norod.github.io/wikicat-tokenizer-eval/tokenizer-slideshow.html
 
 ### Command-Line Analysis
 ```bash
